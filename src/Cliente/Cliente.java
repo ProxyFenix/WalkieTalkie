@@ -48,9 +48,16 @@ public class Cliente {
     }
     
     //Hasta en los walkie talkie, la comunicación puede ser de 2 a más personas, por lo que sería racional nombrar a cada integrante
+    //Aun sin implementar del todo*
     private String getNombre() {
     	//Aquí le damos la opción al soldado de elegir un nombre
         return JOptionPane.showInputDialog(frame, "Elige un usuario, soldado:", "Selección de usuario",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    private String getSelect() {
+    	//Aquí le damos la opción al soldado de elegir un nombre
+        return JOptionPane.showInputDialog(frame, "Escribe 'Escucho' para unirte, 'Hablo' para crear la llamada", "Escribe aquí",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -74,6 +81,16 @@ public class Cliente {
                 //Cuando el nombre esté puesto, activamos el chat
                 else if (line.startsWith("LISTO")) {
                     textField.setEditable(true);
+                }
+                //Aqui, segun la elección del usuario, comprobamos si dejamos que hable o no.
+                else if (line.startsWith("SELECT" + "Escucho")) {
+                	pw.println(getSelect());
+                	textField.setEditable(false);
+                }
+                //Aqui, segun la elección del usuario, comprobamos si dejamos que hable o no.
+                else if (line.startsWith("SELECT" + "Hablo")) {
+                	pw.println(getSelect());
+                	textField.setEditable(true);
                 }
 	            else if (line.startsWith("MENSAJE")) {
 	                messageArea.append(line.substring(8) + "\n");

@@ -13,6 +13,7 @@ import java.util.Set;
 public class Manipulahilos implements Runnable {
 	
     private String name;
+    private String select;
     private Socket socket;
     private Scanner sc;
     private PrintWriter pw;
@@ -59,8 +60,15 @@ public class Manipulahilos implements Runnable {
                         break;
                     }
                 }
+                pw.println("SELECT");
+                select = sc.nextLine();
+                if (select == null) {
+                    return;
+                }
+                
             }
-
+            //Aqui vemos si escucha o habla, y lo mandamos
+            pw.println("SELECT" + select);
             /**
              * Wachi, tenemos el nombre, pero hay que darle un escritor de texto
              * Ya que estamos, vamos a anunciar cual héroe entrando en el foro romano que el usuario ha entrado a la sala
